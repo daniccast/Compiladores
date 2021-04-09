@@ -15,6 +15,10 @@ void agregar_Elemento(Lista * lista, char simbolo){
         Recibe: La lista a la que le agregaremos los elementos.
         El simbolo que irá en el nodo que vamos a agregar.    
     */
+    if (simbolo=='\0'){
+        return ;
+    }
+   
     nodo_lista *nodo = malloc(sizeof(nodo_lista));      
     nodo->simbolo= simbolo;
 
@@ -24,7 +28,6 @@ void agregar_Elemento(Lista * lista, char simbolo){
         lista->fin->siguiente= nodo;    
     nodo->siguiente=NULL;
     lista->fin= nodo;
-
 }
 
 
@@ -35,7 +38,7 @@ void imprimir_lista( Lista * lista){
         Desde el inicio al final.
    */
     if(lista->principio== NULL){
-        printf("No hay elementos en la lista");
+        printf("No hay elementos en la lista \n");
         return ;
     }
 
@@ -52,7 +55,6 @@ void imprimir_lista( Lista * lista){
 }
 
 
-
 void agregar_concatenacion(nodo_lista * nodo){
     /*
         Función para agregar el elemento de concatenación.
@@ -65,6 +67,20 @@ void agregar_concatenacion(nodo_lista * nodo){
         auxiliar->siguiente= nodo->siguiente;
         nodo->siguiente= auxiliar;
     }
+}
+
+
+void liberar_nodo_principio(Lista * lista){
+    
+    if(lista->principio== NULL){
+        printf("No hay elementos en la lista. \n");
+        return ;
+    }
+    nodo_lista * auxiliar;
+
+    auxiliar= lista->principio;
+    lista->principio= auxiliar->siguiente;
+    free(auxiliar);
 }
 
 #include "lista.h"

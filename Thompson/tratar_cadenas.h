@@ -1,18 +1,6 @@
 #ifndef _tratar_cadenas
 #define _tratar_cadenas
 
-struct nodo{
-    char simbolo;
-    struct nodo* siguiente;
-};
-typedef struct nodo nodo_lista;
-
-struct Lista{
-	struct nodo * principio;
-	struct nodo * fin;
-};
-typedef struct Lista Lista;
-
 bool validar_operadores(char * cadena, int longitud);
 Lista *  cadena_a_lista(char * cadena, int longitud);
 void ver_concatenaciones(Lista * lista);
@@ -20,6 +8,7 @@ void ver_concatenaciones(Lista * lista);
 #include <stdio.h>
 #include <stdlib.h>
 #include<stdbool.h>
+#include "estructuras.h"
 #include "lista.h"
 
 

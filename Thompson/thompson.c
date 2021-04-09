@@ -2,8 +2,10 @@
 #include <stdlib.h>
 #include <string.h>
 #include <stdbool.h>
+#include "estructuras.h"
 #include "tratar_cadenas.h"
 #include "lista.h"
+#include "Infija_Postfija.h"
 
 
 /*
@@ -40,8 +42,11 @@ int main(int argc, char *argv[]){
     ver_concatenaciones(lista);                                             //Agregar concatenaciones
     imprimir_lista(lista);
 
+    printf("\t PASAR A POSTFIJA \n\n");
     Lista * lista_postfija= malloc(sizeof(Lista));
-    lista_postfija=pasar_Postfija(lista);
+    lista_postfija=pasar_cadena(lista);
+    imprimir_lista(lista_postfija);
+    
 
     free(lista);
     free(lista_postfija);
