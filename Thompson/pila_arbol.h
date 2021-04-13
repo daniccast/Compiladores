@@ -1,64 +1,65 @@
-#ifndef _pila
-#define _pila
+#ifndef _pila_arbol
+#define _pila_arbol
 
-void push(Pila * pila, char simbolo);
-char pop(Pila * pila);
-void imprimir_pila( Pila * pila);
+void push_A(Pila_A* pila, nodo_pa * nodo);
+nodo_pa * pop_A(Pila_A * pila);
+void imprimir_pila_A( Pila_A * pila);
+
 
 #include <stdio.h>
 #include <stdlib.h>
 #include "estructuras.h"
 
-void push(Pila * pila, char simbolo){
+void push_A(Pila_A* pila, nodo_pa * nodo){
     /* Función para agregar un nuevo elemento a la pila
-       Recibe la pila, y el símbolo del elemento que agregará.
+       Recibe la pila, y el nodo que agregará.
      */
-    nodo_pila * auxiliar=  malloc(sizeof(nodo_pila));
-    auxiliar->simbolo= simbolo;
-
+    
     if(pila->inicio== NULL){
-        pila->inicio= auxiliar;
-        auxiliar->siguiente= NULL;
-        auxiliar->anterior= NULL;
+        pila->inicio= nodo;
+        nodo->siguiente= NULL;
+        nodo->anterior= NULL;
     } else{
-        auxiliar->anterior= pila->tope;
-        pila->tope->siguiente= auxiliar;
+        nodo->anterior= pila->tope;
+        pila->tope->siguiente= nodo;
 
     }
-    pila->tope= auxiliar;
+    pila->tope= nodo;
 }
 
-char pop(Pila * pila){
+
+nodo_pa * pop_A(Pila_A * pila){
      /* Función para sacar el último elemento de una pila,
-    Devuelve el simbolo que contenía ese elemento, y elimina el nodo. */
+    Devuelve el elemento. */
 
     if (pila->inicio== NULL && pila->tope== NULL){
         printf("Sin elementos en la pila \n");
-        return '\0';
+        return NULL;
     } 
     
-    char simbolo= pila->tope->simbolo;
+    nodo_pa *aux;
+    aux= pila->tope;
+
 
     if(pila->inicio== pila->tope){
         pila->inicio= NULL;
         pila->tope= NULL;
-        return simbolo;
+         aux->anterior=NULL;
+        aux->siguiente=NULL;
+        return aux;
     }
     
-    //printf("\tElemento en tope: %c", pila->tope->simbolo);
-    nodo_pila *aux;
-    aux= pila->tope;
-
     pila->tope= aux->anterior;
     pila->tope->siguiente= NULL;
+    
+    aux->anterior=NULL;
+    aux->siguiente=NULL;
 
-    free(aux);
-
-    return  simbolo;
+    return  aux;
 }
 
 
-void imprimir_pila( Pila * pila){
+void imprimir_pila_A( Pila_A * pila){
    /*
         Función para imprimir los elementos de una pila.
         Desde el inicio al final.
@@ -68,7 +69,7 @@ void imprimir_pila( Pila * pila){
         return ;
     }
 
-    nodo_pila * auxiliar;
+    nodo_pa * auxiliar;
     auxiliar=pila->inicio;
     
     do{
@@ -80,5 +81,6 @@ void imprimir_pila( Pila * pila){
     free(auxiliar);
 }
 
-#include "pila.h"
+
+#include "pila_arbol.h"
 #endif 

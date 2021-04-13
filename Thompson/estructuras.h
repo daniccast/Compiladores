@@ -30,6 +30,26 @@ struct pila{
 };
 typedef struct pila Pila;
 
+
+//.......::::::::::: PILA ARBOL ::::::::::.................
+
+struct nodopa{
+    char simbolo;
+    struct nodopa *siguiente;
+    struct nodopa *anterior;
+    struct nodopa *izquierda;
+    struct nodopa *derecha;
+};
+typedef struct nodopa nodo_pa;
+
+struct pilaA{
+    struct nodopa *tope;
+    struct nodopa *inicio;
+};
+typedef struct pilaA Pila_A;
+
+
+
 #include <stdio.h>
 #include <stdlib.h>
 

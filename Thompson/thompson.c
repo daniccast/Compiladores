@@ -4,9 +4,8 @@
 #include <stdbool.h>
 #include "estructuras.h"
 #include "tratar_cadenas.h"
-#include "lista.h"
 #include "Infija_Postfija.h"
-
+#include "generar_arbol.h"
 
 /*
 Considraciones en la expresion regular.
@@ -42,13 +41,22 @@ int main(int argc, char *argv[]){
     ver_concatenaciones(lista);                                             //Agregar concatenaciones
     imprimir_lista(lista);
 
-    printf("\t PASAR A POSTFIJA \n\n");
-    Lista * lista_postfija= malloc(sizeof(Lista));
-    lista_postfija=pasar_cadena(lista);
-    imprimir_lista(lista_postfija);
-    
 
-    free(lista);
+    Lista * lista_postfija= malloc(sizeof(Lista));                          //Pasar expresión a postfija
+    lista_postfija=pasar_cadena(lista);
+    printf("\tEXPRESIÓN POSTFIJA \n");
+    imprimir_lista(lista_postfija); 
+
+    free(lista);                                                            //Liberar primera lista
+
+    nodo_pa * raiz_arbol= malloc(sizeof(nodo_pa));                          //Generar el árbol de expresión con base a la espresión postfija
+    raiz_arbol=armar_arbolExp(lista_postfija);
+
+    printf("\tARBOL EXPRESIÓN \n");
+    imprimir_arbolExp(raiz_arbol, 1);
+    printf("\n");
+    
     free(lista_postfija);
+    free(raiz_arbol);
 }
 

@@ -31,7 +31,6 @@ void agregar_Elemento(Lista * lista, char simbolo){
 }
 
 
-
 void imprimir_lista( Lista * lista){
    /*
         Función para imprimir los elementos de una lista.
@@ -46,7 +45,7 @@ void imprimir_lista( Lista * lista){
     auxiliar=lista->principio;
     
     do{
-        printf("%c ->",auxiliar->simbolo);
+        printf("%c ",auxiliar->simbolo);
         auxiliar= auxiliar->siguiente;
     }while ( auxiliar !=NULL);
 
@@ -71,7 +70,10 @@ void agregar_concatenacion(nodo_lista * nodo){
 
 
 void liberar_nodo_principio(Lista * lista){
-    
+    /*
+    Función para eliminar el primer elemento de una lista.
+    Recibe la lista a la que se le quitará dicho elemento.
+    */
     if(lista->principio== NULL){
         printf("No hay elementos en la lista. \n");
         return ;
@@ -82,6 +84,7 @@ void liberar_nodo_principio(Lista * lista){
     lista->principio= auxiliar->siguiente;
     free(auxiliar);
 }
+
 
 #include "lista.h"
 #endif 

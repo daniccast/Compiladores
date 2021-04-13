@@ -97,13 +97,17 @@ void ver_concatenaciones(Lista * lista){
     do{
          
         if( auxiliar->simbolo!= '.' && auxiliar->simbolo!='|'  && auxiliar->simbolo!='(' ){
- 
-            if( auxiliar->siguiente->simbolo!='|' && auxiliar->siguiente->simbolo!=')' && auxiliar->siguiente->simbolo!='*' && auxiliar->siguiente!=NULL){
+            
+            if(auxiliar->siguiente->simbolo=='.'){
+                //printf("Ya concatenación");
+            }
+
+            else if( auxiliar->siguiente->simbolo!='|' && auxiliar->siguiente->simbolo!=')' && auxiliar->siguiente->simbolo!='*' && auxiliar->siguiente!=NULL){
                //printf("concatenacion %c . %c \n",auxiliar->simbolo, auxiliar->siguiente->simbolo);
                agregar_concatenacion(auxiliar);
             }    
             
-        } 
+        }  
         auxiliar= auxiliar->siguiente;
     }  while (auxiliar != lista->fin);
     //free(auxiliar);   
