@@ -6,9 +6,6 @@ nodo_pa * pop_A(Pila_A * pila);
 void imprimir_pila_A( Pila_A * pila);
 
 
-#include <stdio.h>
-#include <stdlib.h>
-#include "estructuras.h"
 
 void push_A(Pila_A* pila, nodo_pa * nodo){
     /* Función para agregar un nuevo elemento a la pila

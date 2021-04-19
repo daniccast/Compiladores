@@ -1,11 +1,8 @@
 #ifndef _Infija_Postfija
 #define _Infija_Postfija
 
-
 Lista * pasar_cadena(Lista * lista);
 
-#include <stdio.h>
-#include <stdlib.h>
 #include "estructuras.h"
 #include "pila.h"
 #include "lista.h"
@@ -99,12 +96,6 @@ Lista * pasar_cadena(Lista * infija){
     return postfija;
 }
 
-/*
-IMPRIMIR PARA DEBUG 
-printf("\t IT \n");
-imprimir_pila(pila);
-imprimir_lista(infija);
-imprimir_lista(postfija); 
-*/
+
 #include "Infija_Postfija.h"
 #endif 

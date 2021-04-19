@@ -1,0 +1,13 @@
+Generar .y
+bison -d archivo.y
+Generar .l con la biblioteca que salío del paso anterior de bison.
+flex archivo.l
+AHORA HAY QUE COMPILAR LOS .C
+gcc -c lexx.c
+gcc -c bis.tab.c
+
+COMPILAR  JUNTOS
+gcc lex.o bis.tab.o -lfl
+ 
+No olvidar 
+yyparse

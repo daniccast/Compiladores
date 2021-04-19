@@ -5,9 +5,6 @@ void push(Pila * pila, char simbolo);
 char pop(Pila * pila);
 void imprimir_pila( Pila * pila);
 
-#include <stdio.h>
-#include <stdlib.h>
-#include "estructuras.h"
 
 void push(Pila * pila, char simbolo){
     /* Función para agregar un nuevo elemento a la pila
@@ -27,6 +24,7 @@ void push(Pila * pila, char simbolo){
     }
     pila->tope= auxiliar;
 }
+
 
 char pop(Pila * pila){
      /* Función para sacar el último elemento de una pila,

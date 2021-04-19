@@ -1,0 +1,31 @@
+%{
+
+ /* Herramienta:bison
+      es la versión GNU de YACC
+     YACC es la herramienta original de UNIX
+    El lenguaje se llama YAC. La extesión es .y
+    Flex usa expresiones regulares, BISON usa gramaticas libres de contexto. 
+ */
+
+%}
+
+%%
+
+entrada:
+%empty
+;
+entrada: entrada linea
+;
+linea: '\n'
+;
+linea: expresion '\n'
+;
+expresion: NUMEROexpresion: expresion expresion '+' 
+;  
+;
+expresion: expresion expresion '+'
+;
+
+
+
+%%

@@ -31,7 +31,7 @@ struct pila{
 typedef struct pila Pila;
 
 
-//.......::::::::::: PILA ARBOL ::::::::::.................
+//.......::::::::::: PILA ARBOL ::::::::::................. NO
 
 struct nodopa{
     char simbolo;
@@ -48,12 +48,32 @@ struct pilaA{
 };
 typedef struct pilaA Pila_A;
 
+//.......::::::::::: GRAFO ::::::::::.................
 
+struct nodo_grafo{
+    int no_estado;
+    struct nodo_grafo *izquierda;
+    struct nodo_grafo *derecha;
+    char transicion_izq;
+    char transicion_der;
+    bool inicial;
+    bool fin;
+};
+typedef struct nodo_grafo estado;
 
-#include <stdio.h>
-#include <stdlib.h>
+struct inifinAFN{
+    estado * inicio;
+    estado * fin; 
+    struct inifinAFN * siguiente;
+    struct inifinAFN * anterior;
+};
+typedef struct inifinAFN AFN;
 
-
+struct pilaAFN{
+    AFN *tope;
+    AFN *inicio;
+};
+typedef struct pilaAFN Pila_AFN;
 
 #include "estructuras.h"
 #endif 

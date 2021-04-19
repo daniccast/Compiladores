@@ -5,9 +5,6 @@ void agregar_Elemento( Lista * lista, char simbolo);
 void imprimir_lista( Lista * lista);
 void agregar_concatenacion(nodo_lista * auxiliar);
 
-#include <stdio.h>
-#include <stdlib.h>
-
 
 void agregar_Elemento(Lista * lista, char simbolo){
     /*

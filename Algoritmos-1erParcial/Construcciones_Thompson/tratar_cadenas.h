@@ -5,10 +5,6 @@ bool validar_operadores(char * cadena, int longitud);
 Lista *  cadena_a_lista(char * cadena, int longitud);
 void ver_concatenaciones(Lista * lista);
 
-#include <stdio.h>
-#include <stdlib.h>
-#include<stdbool.h>
-#include "estructuras.h"
 #include "lista.h"
 
 
@@ -112,6 +108,7 @@ void ver_concatenaciones(Lista * lista){
     }  while (auxiliar != lista->fin);
     //free(auxiliar);   
 }
+
 
 #include "tratar_cadenas.h"
 #endif 
