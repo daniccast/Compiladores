@@ -16,11 +16,12 @@ Además de 'E . | *', todos los demás carácteres se tomarán como parte del al
 #include <stdlib.h>
 #include <stdbool.h>
 #include <string.h>
+#include <unistd.h>
 #include "estructuras.h"
 #include "tratar_cadenas.h"
 #include "Infija_Postfija.h"
 #include "construccionesThompson.h"
-
+ 
 
 int main(int argc, char *argv[]){
     char *expresion;
@@ -64,9 +65,27 @@ int main(int argc, char *argv[]){
     AFN * raiz= malloc(sizeof(AFN));
     raiz= construirThompson(lista_postfija);                                //Construcción del grafo
 
+    obtener_Conteo();
+
     printf("\t\t AFN GENERADO:\n");
     Imprimir_AFD(raiz);
 
+    //------  GENERAR ARCHIVO PARA DOT.
+    
+    printf("\n\nNombre de la imagen: \t");
+    printf("a%d.png\n Encuentrala en la carpeta AFNS\n", conteo);
+
+    char instruccion[25]={};
+
+    strcat(instruccion, "dot -Tpng -O AFNS/a");
+    strcat(instruccion,conteo_s);
+    strcat(instruccion,".txt");
+
+    
+    system(instruccion);
+    usleep(500);
+    //printf("%s", instruccion);
+    
     free(lista);
     free(lista_postfija);
     free(raiz);

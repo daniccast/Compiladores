@@ -75,5 +75,12 @@ struct pilaAFN{
 };
 typedef struct pilaAFN Pila_AFN;
 
+
+// ------- Conteo achivos
+int conteo;
+char conteo_s[5];
+char nombre_archivo[15]= "AFNS/a";
+
+
 #include "estructuras.h"
 #endif 

@@ -3,9 +3,11 @@
 
 AFN * construirThompson(Lista * lista);
 void Imprimir_AFD(AFN * AFN);
+void obtener_Conteo();
 
 #include "pila_AFN.h"
 #include "ColaEdos.h"
+#include "archivo_dot.h"
 
 bool es_terminal(char c){
     /* Función para determinar si un símbolo es terminal o no.
@@ -258,22 +260,30 @@ void Imprimir_AFD(AFN * AFN){
     for(int i=0; i<longitud; i++)                                                   //Inicializar arreglo
         estados_visitados[i]= false;
 
+    abrir_archivo_dot();                                                            //Archivo para generar diagrama
+    FILE* archivo;
+    archivo = fopen (nombre_archivo, "a");
 
     cola_edos * cola= malloc(sizeof(cola_edos));                                    //Definir cola de estados
     cola->principio=NULL;
     cola->fin=NULL;
-  
+    
     encolar(cola, AFN->inicio);                                                     //Iniciar con el nodo inicial del AFN
 
     while (cola->principio != NULL){                                                //Hasta que no hayan elementos en la cola
         
         printf("----ESTADO %d ----", cola->principio->estado->no_estado);
         
-        if (cola->principio->estado->inicial)
+        if (cola->principio->estado->inicial){
             printf("\t  Inicial");
-        if (cola->principio->estado->fin)
+            agregar_inicio(archivo, cola->principio->estado->no_estado);
+        }
+            
+        if (cola->principio->estado->fin){
             printf("\t  Fin");
-
+            agregar_final(archivo, cola->principio->estado->no_estado);
+        }
+            
         printf("\n");
 
         if (cola->principio->estado->fin && cola->principio->siguiente==NULL)
@@ -285,6 +295,8 @@ void Imprimir_AFD(AFN * AFN){
                 printf("%d,%c -> %d \n",cola->principio->estado->no_estado, 
                 cola->principio->estado->transicion_izq, cola->principio->estado->izquierda->no_estado );
                 
+                agregar_transicion(archivo,cola->principio->estado->no_estado, cola->principio->estado->transicion_izq,cola->principio->estado->izquierda->no_estado);  //Agregar para dot
+
                 if(!estados_visitados[cola->principio->estado->izquierda->no_estado] && cola->principio->estado->izquierda!= cola->fin->estado)
                     encolar(cola, cola->principio->estado->izquierda);
             }
@@ -292,6 +304,7 @@ void Imprimir_AFD(AFN * AFN){
             if(cola->principio->estado->derecha!= NULL){                                    //Ver si tiene algo en su rama derecha, e imprimir
                 printf("%d,%c -> %d \n",cola->principio->estado->no_estado, 
                 cola->principio->estado->transicion_der, cola->principio->estado->derecha->no_estado );
+                agregar_transicion(archivo, cola->principio->estado->no_estado,cola->principio->estado->transicion_der, cola->principio->estado->derecha->no_estado);    //Agregar para dot
                 
                 if(!estados_visitados[cola->principio->estado->derecha->no_estado] && cola->principio->estado->derecha!= cola->fin->estado)
                     encolar(cola, cola->principio->estado->derecha);
@@ -301,7 +314,10 @@ void Imprimir_AFD(AFN * AFN){
         }   
     } 
 
+    cerrar_archivo_dot(archivo);
 }
+
+
 
 
 #include "construccionesThompson.h"
