@@ -7,13 +7,13 @@ void ver_concatenaciones(Lista * lista);
 
 #include "lista.h"
 
-
-bool validar_operadores(char * cadena, int longitud){
-    /*
-    Función para validar que la expresión regular no tenga algo extraño.
+/*
+    Valida que la expresión regular no tenga algo incorrecto.
     Regresará FALSE si encuentra un error.
     Regresará TRUE si no encuentra uno.
     */
+bool validar_operadores(char * cadena, int longitud){
+    
     int i=0;
     int parentesis_A=0, parentesis_C=0; 
     
@@ -53,13 +53,12 @@ bool validar_operadores(char * cadena, int longitud){
         return true;
 }
 
-
+/*
+    Pasa cada carácter de la cadena a un elemento en unalista. 
+    Devuelve la lista de elementos.
+*/
 Lista * cadena_a_lista(char * cadena, int longitud){
-    /*
-        Función que pasa cada carácter de la cadena a un elemento en una
-        lista simple. 
-        Devuelve la lista de elementos.
-    */
+    
     int i=0;
   
     Lista * lista= malloc(sizeof(Lista));
@@ -74,12 +73,12 @@ Lista * cadena_a_lista(char * cadena, int longitud){
     
 }
 
-
-void ver_concatenaciones(Lista * lista){
-   /*
-    Función que busca dónde hay concatenaciones y manda a llamar a la función 
+ /*
+    Busca dónde hay concatenaciones y manda a llamar a la función 
     que agrega el nodo entre los elementos de la concatenación.
    */
+void ver_concatenaciones(Lista * lista){
+  
     if(lista->principio== NULL){
         printf("No hay elementos en la lista");
         return ;

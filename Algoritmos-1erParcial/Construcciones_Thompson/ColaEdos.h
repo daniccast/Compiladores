@@ -20,10 +20,11 @@ void desencolar_Elemento(cola_edos * lista);
 
 #include "estructuras.h"
 
-void encolar( cola_edos * cola, estado * edo){
-	/* Función para agregar un nodo al final de la cola.
-		Recibe un estado, y crea el nodo para la cola
+/*  Crea el nodo para la cola y lo agrega al final de la misma.
+	Recibe un estado.
 	*/
+void encolar( cola_edos * cola, estado * edo){
+	
 	if (edo == NULL){
 		return ;
 	}
@@ -44,10 +45,10 @@ void encolar( cola_edos * cola, estado * edo){
 }
 
 
-void desencolar_Elemento(cola_edos * lista){
-	/* Función para eliminar el primer nodo en la cola
-		Recibe la cola a la que se le quitará el nodo
+/* Eliminar el primer nodo en la cola
+	Recibe la cola a la que se le quitará el nodo.
 	*/
+void desencolar_Elemento(cola_edos * lista){
 	if (lista->principio == NULL){
 		printf("No hay elementos en la lista");
 		return ;

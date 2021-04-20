@@ -4,11 +4,11 @@
 void push_AFN( Pila_AFN * pila, AFN * AFN);
 AFN * pop_AFN(Pila_AFN * pila);
 
-
+/* 
+    Insertar AFN al último de una pila de AFNs.
+    Recibe la pila y el AFN a insertar-
+*/
 void push_AFN( Pila_AFN * pila, AFN * AFN){
-    /* Función para insertar AFN a una pila
-    Recibe la pila y el AFN a insertar
-    */
     if(pila->inicio== NULL){
         pila->inicio= AFN;
         AFN->siguiente=NULL;
@@ -23,11 +23,12 @@ void push_AFN( Pila_AFN * pila, AFN * AFN){
 
 }
 
-
+/*  Retira el último elemento de una pila de AFN's.
+    Recibe la pila de AFN's. 
+    Devuelve el útlimo AFN agregado a la pila.
+*/
 AFN * pop_AFN(Pila_AFN * pila){
-    /* Función para retirar el último elemento de una pila.
-    Recibe la pila. Devuelve el AFN.
-	*/
+    
     if (pila->inicio== NULL && pila->tope== NULL){
         printf("Sin elementos en la pila \n");
         return NULL;

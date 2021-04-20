@@ -9,22 +9,21 @@ void obtener_Conteo();
 #include "ColaEdos.h"
 #include "archivo_dot.h"
 
+/*  Determina si un símbolo es terminal o no.
+    Devuelve false si es igual a . * | 
+              true por el contrario
+*/
 bool es_terminal(char c){
-    /* Función para determinar si un símbolo es terminal o no.
-        Devuelve false si es igual a . * | 
-                 true por el contrario
-    */
     if (c!='.' && c!='|' && c!='*')
         return true;
     else 
         return false;
 }
 
-
-AFN * armar_AFN_terminal(char simbolo, int no_Estado){
-    /* Función que devuelve la estructura AFN de un símbolo terminal.
-    Recibe el símbolo, y el número de estado final en el conteo.
+/*  Devuelve la estructura AFN de un símbolo terminal y E.
+    Recibe el símbolo, y el número del último estado final.
     */
+AFN * armar_AFN_terminal(char simbolo, int no_Estado){
     AFN * afn = malloc(sizeof(AFN));
 
     estado * estado1= malloc(sizeof(estado));
@@ -57,13 +56,11 @@ AFN * armar_AFN_terminal(char simbolo, int no_Estado){
     return afn;    
 }
 
-
-AFN * armar_AFN_concatenacion(AFN * afn1, AFN * afn2){
-    /* Función que devuelve la estructura AFN de una concatenación.
-    Recibe los dos AFN que serán concatenados.
-    Orden:    afn1 . afn2
+/* Devuelve la estructura AFN de una concatenación de dos autómatas.
+   Recibe los dos AFN que serán concatenados.
+   Orden:    afn1 . afn2
     */
-
+AFN * armar_AFN_concatenacion(AFN * afn1, AFN * afn2){
     afn1->fin->izquierda= afn2->inicio->izquierda;
     afn1->fin->transicion_izq= afn2->inicio->transicion_izq;
 
@@ -86,13 +83,11 @@ AFN * armar_AFN_concatenacion(AFN * afn1, AFN * afn2){
     return afn1;
 }
 
-
-AFN * armar_AFN_union(AFN * afn1, AFN * afn2){
-    /* Función que devuelve la estructura AFN de una unión.
+/* Función que devuelve la estructura AFN de una unión de dos automátas.
     Recibe los dos AFN que serán unidos.
     Orden:    afn1 | afn2
-    */
-
+*/
+AFN * armar_AFN_union(AFN * afn1, AFN * afn2){
     estado * ini= malloc(sizeof(estado));
     estado * fin= malloc(sizeof(estado));
    
@@ -143,12 +138,11 @@ AFN * armar_AFN_union(AFN * afn1, AFN * afn2){
 }
 
 
-AFN * armar_AFN_kleene(AFN * afn1){
-    /* Función que devuelve la estructura AFN de una función estrella.
-    Recibe el AFN al que se le aplicará.
+/*  Devuelve la estructura AFN a la que se le aplica una función estrella.
+    Recibe a estructura AFN al que se le aplicará.
     Orden:    afn1*
-    */
-
+*/
+AFN * armar_AFN_kleene(AFN * afn1){
     estado * ini= malloc(sizeof(estado));
     estado * fin= malloc(sizeof(estado));
 
@@ -186,12 +180,11 @@ AFN * armar_AFN_kleene(AFN * afn1){
     return afn1;
 }
 
-
+/* Función que realiza el algoritmo de Thompson.
+    Devuelve la estructura AFN, que apunta al estado inicial y final del AFN.
+    Resive una lista que incluye los elementos de una expresión postfija.
+*/
 AFN * construirThompson(Lista * lista){
-    /* Función que realiza el algoritmo de Thompson.
-    Devuelve la estructura AFN, que apunta al nodo inicial del AFN y al final
-    */
-    
       if(lista->principio== NULL){
         printf("No hay elementos en la lista \n");
         return NULL;
@@ -247,20 +240,22 @@ AFN * construirThompson(Lista * lista){
     return afn_aux;
 }
 
-
+/*
+    Recorre el AFN e imprime sus estados y transiciones.
+    Utiliza el recorrido BFS para ello.
+    Recibe el apuntador al AFN. (Inicio y fin de este).
+    Imprime en consola los estados y el simbolo seguido del estado que le sigue.
+    Además manda a llamar a las funciones correspondientes para que esto se escriba en el
+    archivo .tx que se usará para generar la imagen del automáta.
+*/
 void Imprimir_AFD(AFN * AFN){ 
-    /*
-        Función para recorrer el AFN,e imprimir sus estados y transiciones.
-        Utiliza el recorrido BFS para ello.
-    */
-
     bool estados_visitados[AFN->fin->no_estado];                                    //Arreglo de estados visitados
     long int longitud= sizeof(estados_visitados) / sizeof(estados_visitados[0]);
     
     for(int i=0; i<longitud; i++)                                                   //Inicializar arreglo
         estados_visitados[i]= false;
-
-    abrir_archivo_dot();                                                            //Archivo para generar diagrama
+    
+    //Archivo para generar diagrama
     FILE* archivo;
     archivo = fopen (nombre_archivo, "a");
 
@@ -274,12 +269,12 @@ void Imprimir_AFD(AFN * AFN){
         
         printf("----ESTADO %d ----", cola->principio->estado->no_estado);
         
-        if (cola->principio->estado->inicial){
+        if (cola->principio->estado->inicial){                                      //Si es un estado inicial
             printf("\t  Inicial");
             agregar_inicio(archivo, cola->principio->estado->no_estado);
         }
             
-        if (cola->principio->estado->fin){
+        if (cola->principio->estado->fin){                                          //Si es un estado final
             printf("\t  Fin");
             agregar_final(archivo, cola->principio->estado->no_estado);
         }
@@ -314,10 +309,8 @@ void Imprimir_AFD(AFN * AFN){
         }   
     } 
 
-    cerrar_archivo_dot(archivo);
+    cerrar_archivo_dot(archivo);            
 }
-
-
 
 
 #include "construccionesThompson.h"

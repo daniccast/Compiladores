@@ -30,24 +30,6 @@ struct pila{
 };
 typedef struct pila Pila;
 
-
-//.......::::::::::: PILA ARBOL ::::::::::................. NO
-
-struct nodopa{
-    char simbolo;
-    struct nodopa *siguiente;
-    struct nodopa *anterior;
-    struct nodopa *izquierda;
-    struct nodopa *derecha;
-};
-typedef struct nodopa nodo_pa;
-
-struct pilaA{
-    struct nodopa *tope;
-    struct nodopa *inicio;
-};
-typedef struct pilaA Pila_A;
-
 //.......::::::::::: GRAFO ::::::::::.................
 
 struct nodo_grafo{
@@ -77,10 +59,9 @@ typedef struct pilaAFN Pila_AFN;
 
 
 // ------- Conteo achivos
-int conteo;
-char conteo_s[5];
-char nombre_archivo[15]= "AFNS/a";
-
+int conteo;                         //Variable que llevará el valor del archivo
+char conteo_s[5];                   //Variable para el valor en string
+char nombre_archivo[15]= "AFNS/a";  //Ruta e inicio de nombre de archivo
 
 #include "estructuras.h"
 #endif 

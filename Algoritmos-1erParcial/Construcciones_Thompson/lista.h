@@ -5,13 +5,13 @@ void agregar_Elemento( Lista * lista, char simbolo);
 void imprimir_lista( Lista * lista);
 void agregar_concatenacion(nodo_lista * auxiliar);
 
-
+/*
+    Agrega elemento al final de la lista.
+    Recibe la lista a la que le agregaremos el elemento y
+    el simbolo que irá en el nodo que vamos a agregar.    
+*/
 void agregar_Elemento(Lista * lista, char simbolo){
-    /*
-        Función para agregar elementos al final de la lista
-        Recibe: La lista a la que le agregaremos los elementos.
-        El simbolo que irá en el nodo que vamos a agregar.    
-    */
+    
     if (simbolo=='\0'){
         return ;
     }
@@ -28,11 +28,11 @@ void agregar_Elemento(Lista * lista, char simbolo){
 }
 
 
+/*
+    Imprime los elementos de una lista.
+*/
 void imprimir_lista( Lista * lista){
-   /*
-        Función para imprimir los elementos de una lista.
-        Desde el inicio al final.
-   */
+   
     if(lista->principio== NULL){
         printf("No hay elementos en la lista \n");
         return ;
@@ -50,12 +50,12 @@ void imprimir_lista( Lista * lista){
     free(auxiliar);
 }
 
-
+/*
+    Agrega el elemento de concatenación.
+    Se agrega, después del nodo que se recibe, un nodo que contenga el simbolo '.'
+*/
 void agregar_concatenacion(nodo_lista * nodo){
-    /*
-        Función para agregar el elemento de concatenación.
-        Se agrega después del nodo que se recibe un nodo que contenga el simbolo '.'
-    */
+    
     nodo_lista * auxiliar = malloc(sizeof(nodo_lista));
     auxiliar->simbolo= '.';
    
@@ -65,12 +65,12 @@ void agregar_concatenacion(nodo_lista * nodo){
     }
 }
 
-
-void liberar_nodo_principio(Lista * lista){
-    /*
-    Función para eliminar el primer elemento de una lista.
+/*
+    Eliminar el primer elemento de una lista.
     Recibe la lista a la que se le quitará dicho elemento.
-    */
+*/
+void liberar_nodo_principio(Lista * lista){
+    
     if(lista->principio== NULL){
         printf("No hay elementos en la lista. \n");
         return ;

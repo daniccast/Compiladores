@@ -10,8 +10,13 @@ La letra 'E' será considerada como la cadena vacía épsilon.
 El carácter '.' será tomado como la operación de concatenación.
 Además de 'E . | *', todos los demás carácteres se tomarán como parte del alfabeto.
 
-*/
+La expresión debe pasarse como parámetro en el omento de ejecutar. Ejemplo:
+gcc thompson.c -o thompson <-Compila
+./thompson "expresion"
+./thompson "a|c"
 
+Generará una imágen PNG con el automáta en la carpeta AFNS.
+*/
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
@@ -59,18 +64,17 @@ int main(int argc, char *argv[]){
 
     Lista * lista_postfija= malloc(sizeof(Lista));                          //Pasar expresión a postfija
     lista_postfija=pasar_cadena(lista);
-    //printf("\tEXPRESIÓN POSTFIJA \n");
     //imprimir_lista(lista_postfija); 
       
     AFN * raiz= malloc(sizeof(AFN));
     raiz= construirThompson(lista_postfija);                                //Construcción del grafo
 
-    obtener_Conteo();
-
+    obtener_Conteo();                                                       //Conteo de AFNS para generar archivo
+    abrir_archivo_dot(expresion);                                           //Iniciar archivo .txt para generar el gráfico
     printf("\t\t AFN GENERADO:\n");
     Imprimir_AFD(raiz);
 
-    //------  GENERAR ARCHIVO PARA DOT.
+    //------  GENERAR ARCHIVO TXT PARA DOT.
     
     printf("\n\nNombre de la imagen: \t");
     printf("a%d.png\n Encuentrala en la carpeta AFNS\n", conteo);
@@ -81,10 +85,8 @@ int main(int argc, char *argv[]){
     strcat(instruccion,conteo_s);
     strcat(instruccion,".txt");
 
-    
     system(instruccion);
     usleep(500);
-    //printf("%s", instruccion);
     
     free(lista);
     free(lista_postfija);

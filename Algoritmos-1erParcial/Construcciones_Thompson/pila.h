@@ -5,11 +5,10 @@ void push(Pila * pila, char simbolo);
 char pop(Pila * pila);
 void imprimir_pila( Pila * pila);
 
-
+/*  Agregar un nuevo elemento al final de la pila
+    Recibe la pila, y el símbolo del elemento que agregará.
+*/
 void push(Pila * pila, char simbolo){
-    /* Función para agregar un nuevo elemento a la pila
-       Recibe la pila, y el símbolo del elemento que agregará.
-     */
     nodo_pila * auxiliar=  malloc(sizeof(nodo_pila));
     auxiliar->simbolo= simbolo;
 
@@ -25,10 +24,11 @@ void push(Pila * pila, char simbolo){
     pila->tope= auxiliar;
 }
 
-
+/*  Retira el último elemento de una pila,
+    Devuelve el simbolo que contenía ese elemento, y elimina el nodo. 
+*/
 char pop(Pila * pila){
-     /* Función para sacar el último elemento de una pila,
-    Devuelve el simbolo que contenía ese elemento, y elimina el nodo. */
+     
 
     if (pila->inicio== NULL && pila->tope== NULL){
         printf("Sin elementos en la pila \n");
@@ -55,12 +55,11 @@ char pop(Pila * pila){
     return  simbolo;
 }
 
-
+/*
+    Imprime los elementos de una pila.
+*/
 void imprimir_pila( Pila * pila){
-   /*
-        Función para imprimir los elementos de una pila.
-        Desde el inicio al final.
-   */
+   
     if(pila->inicio== NULL || pila->tope==NULL){
         printf("No hay elementos en la pila \n");
         return ;

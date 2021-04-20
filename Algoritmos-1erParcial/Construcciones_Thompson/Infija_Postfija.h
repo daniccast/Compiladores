@@ -7,10 +7,11 @@ Lista * pasar_cadena(Lista * lista);
 #include "pila.h"
 #include "lista.h"
 
-int precedencia(char c){
-    /* Función que devuelve la precedencia de un operador  * |  .
+/*  Devuelve la precedencia de un operador  *->3,  |->2,  .->1
     Si no se manda un operador como los anteriores, devuelve cero.
     */
+int precedencia(char c){
+    
     if (c=='*')
         return 3;
     else if (c=='.')
@@ -21,13 +22,15 @@ int precedencia(char c){
         return 0;
 }
 
-Lista * pasar_cadena(Lista * infija){
-    /*
-        Función para pasar una expresión regular infija a postfija.
-        Implementación del Shunting-Yard Algorithm.
-        Ingresa una lista con expresión infija, devuelve una lista con expresión postfija.
-    */
 
+ /*
+    Pasar una expresión regular infija a postfija.
+    Implementación del Shunting-Yard Algorithm.
+    Ingresa un apuntador a una lista con expresión infija
+    Devuelve un apuntador a una lista con expresión postfija.
+    */
+Lista * pasar_cadena(Lista * infija){
+   
     if(infija->principio== NULL){                                   //Verificar que la lista contenga algo.
         printf("No hay elementos en la lista infija");
         return NULL;
@@ -61,7 +64,7 @@ Lista * pasar_cadena(Lista * infija){
             pop(pila);
             
         }
-        else if( infija->principio->simbolo=='*' ||  infija->principio->simbolo=='.' ||  infija->principio->simbolo=='|'){      //SI ES UN OPERADOR
+        else if( infija->principio->simbolo=='*' ||  infija->principio->simbolo=='.' ||  infija->principio->simbolo=='|'){      //SI ES UN OPERADOR (*,.,|)
             if(pila->tope==NULL){                                                                                               //Si no hay nada en pila, agregar directamente.
                 push(pila,  infija->principio->simbolo);
             } else {                                                                                                            //Si no, sacar hasta que la preedencia sea menor, y agregar.
