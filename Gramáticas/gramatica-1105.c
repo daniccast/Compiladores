@@ -21,7 +21,7 @@ acafdeadea
 
 */
 
-char cadena[]= "ac" ;      //Cadena a reconocer
+char cadena[]= "afdea" ;      //Cadena a reconocer
 int indice=0;                        //Indice del arreglo
 
 bool A(void);

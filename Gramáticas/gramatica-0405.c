@@ -15,15 +15,13 @@ Cadenas de la forma:
 Palíndromos con c en medio
 */
 
-char cadena[]= "acaa" ;      //Cadena a reconocer
+char cadena[]= "ababacababa" ;      //Cadena a reconocer
 int indice=0;               //Indice del arreglo
 int tamanio=0;              //Tamaño del arreglo
 
 bool A(void);
 bool B(void);
-bool consumir_a(void);
-bool consumir_b(void);
-bool consumir_c(void);
+bool consumir(char c);
 
 int main(void){
     tamanio= strlen(cadena); 
@@ -42,20 +40,13 @@ bool A(void){
         Símbolo inicial.
         Regla de producción: A-> aBa
     */
-    if (consumir_a()){
+    if (consumir('a')){
         if( B() ){
-            if (consumir_a()){
-                return true;
-            } else{
-                return false;
-            }
-        } else {
-            return false;
-        }
-    } else{
-        return false;
+                return consumir('a');   
+        } 
     }
-
+    
+    return false;
 }
 
 bool B(void){
@@ -65,44 +56,19 @@ bool B(void){
     B-> c
     */
     
-    if(consumir_b()){
+    if(consumir('b')){
         if (A()){
-            if (consumir_b()){
-                return true;
-            }
-            else{
-                return false;
-            }
-        } else {
-            return false;
-        }
-        
-    } else if (consumir_c()){
+            return consumir('b');
+        } 
+    } else if (consumir('c')){
         return true;
-    } else {
-        return false;
-    }
+    } 
+    return false;
+    
 }
 
-bool consumir_a(void){
-    if(cadena[indice]=='a'){
-        indice++;
-        return true;
-    } else {
-        return false;
-    }
-}
-bool consumir_b(void){
-    if(cadena[indice]=='b'){
-         indice++;
-        return true;
-    } else {
-        return false;
-    }
-}
-
-bool consumir_c(void){
-    if(cadena[indice]=='c'){
+bool consumir(char c){
+     if(cadena[indice]== c){
          indice++;
         return true;
     } else {
