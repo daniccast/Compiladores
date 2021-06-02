@@ -1,0 +1,17 @@
+
+En el proyecto minímo, ¿Es necesario usar break para el ciclo while?
+¿En c vamos a definir solo variables int o long int?
+
+
+{L}({L}|{D})*		{ count(); return(check_type()); }----> ¿Qué es check type?
+
+0[xX]{H}+{IS}?		{ count(); return(CONSTANT); } Tengo entendido que representa un número hexadecimal. Sin embargo, no tengo claro que podemos hacer con estas:
+0{D}+{IS}?		{ count(); return(CONSTANT); }
+{D}+{IS}?		{ count(); return(CONSTANT); }
+L?'(\\.|[^\\'])+'	{ count(); return(CONSTANT); }
+
+
+¿Para el proyecto minímo hay que usar operdaores lógicos?
+¿Ocupamos ++ y -- o con la sitaxix variable= variable + 1 queda?.
+¿En el proyecto se deberán hacer multiples declaraciones en una línea?
+
