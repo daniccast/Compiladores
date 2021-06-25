@@ -1,0 +1,18 @@
+int main(){
+    int a = 20;
+    int b = 21;
+    int c = a + b;
+
+    if (a > b) {
+        printf("Choose a");
+    } 
+
+    while (a <= 21) {
+        printf("%d",a);
+        a=a+1;
+    }
+
+    printf("%d",a);
+    printf("%d",b);
+    printf("%d",c);
+}

@@ -1,0 +1,20 @@
+override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main)
+        val a:Int = 20
+        val b:Int = 21
+        val c:Int= a + b
+
+        if (a > b) {
+            print("Choose a")
+        }
+        while (a <= 21) {
+            print (a)
+            a+1
+        }
+
+        print (a)
+        print(b)
+        print(c)
+    }
+}

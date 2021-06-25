@@ -1,0 +1,42 @@
+.method protected onCreate(Landroid/os/Bundle;)V
+    .registers 6
+    .param p1, "savedInstanceState"    # Landroid/os/Bundle;
+
+    .line 8
+    invoke-super {p0, p1}, Landroidx/appcompat/app/AppCompatActivity;->onCreate(Landroid/os/Bundle;)V
+
+    .line 9
+    const v0, 0x7f0b001c
+
+    invoke-virtual {p0, v0}, Lcom/example/holamundo/MainActivity;->setContentView(I)V
+
+    .line 10
+    const/16 v0, 0x14
+
+    .line 11
+    .local v0, "a":I
+    const/16 v1, 0x15
+
+    .line 12
+    .local v1, "b":I
+    add-int v2, v0, v1
+
+    .line 14
+    .local v2, "c":I
+    nop
+
+    .line 17
+    :goto_10
+    nop
+
+    .line 18
+    sget-object v3, Ljava/lang/System;->out:Ljava/io/PrintStream;
+
+    invoke-virtual {v3, v0}, Ljava/io/PrintStream;->print(I)V
+
+    .line 19
+    nop
+
+    .line 17
+    goto :goto_10
+.end method
